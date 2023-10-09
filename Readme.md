@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Ivan Filippov](https://up.htmlacademy.ru/javascript/30/user/2266613).
-* Наставник: `Неизвестно`.
+* Наставник: [Kenan Agaev](https://up.htmlacademy.ru/profession/frontender/17/javascript/30/user/1064275).
 
 ---
 
