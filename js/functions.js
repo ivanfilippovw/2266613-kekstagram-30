@@ -3,18 +3,18 @@
 Функция для проверки длины строки. Она принимает строку, которую нужно проверить, и максимальную длину и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее. Эта функция нам пригодится для валидации формы. Примеры использования функции:
 */
 
-const stringLength = (string, maxLength) => string.length <= maxLength;
+const getStringLength = (string, maxLength) => string.length <= maxLength;
 
 console.log('');
 console.log('Проверки первой функции:');
 // Cтрока короче 20 символов
-console.log(stringLength('проверяемая строка', 20)); // true
+console.log(getStringLength('проверяемая строка', 20)); // true
 // Длина строки ровно 18 символов
-console.log(stringLength('проверяемая строка', 18)); // true
+console.log(getStringLength('проверяемая строка', 18)); // true
 // Строка длиннее 10 символов
-console.log(stringLength('проверяемая строка', 10)); // false
+console.log(getStringLength('проверяемая строка', 10)); // false
 
-console.log(stringLength('или какая-то другая строка', 30)); // true
+console.log(getStringLength('или какая-то другая строка', 30)); // true
 let someString = 'или какая-то другая строка';
 console.log(someString.length);
 console.log('');
@@ -61,12 +61,35 @@ console.log('');
 Если хотите усложнить задание, предусмотрите случай, когда вместо строки приходит число. Обратите внимание, что возвращать функция по-прежнему должна только целые положительные числа:
 */
 
-имяФункции('2023 год');            // 2023
-имяФункции('ECMAScript 2022');     // 2022
-имяФункции('1 кефир, 0.5 батона'); // 105
-имяФункции('агент 007');           // 7
-имяФункции('а я томат');           // NaN
+function getAllNumbers(string) {
+  let result = '';
 
-имяФункции(2023); // 2023
-имяФункции(-1);   // 1
-имяФункции(1.5);  // 15
+  if (typeof string === 'number') {
+    string = string.toString();
+  }
+
+  for (let i = 0; i < string.length; i++) {
+    if (!isNaN(parseInt(string[i], 10))) {
+      result += string[i];
+    }
+  }
+
+  // Если нет найденных цифр, вернем NaN
+  if (result === '') {
+    return NaN;
+  }
+
+  return result;
+}
+
+console.log('Проверки третьей функции, если передана строка:');
+console.log(getAllNumbers('2023 год'));            // 2023
+console.log(getAllNumbers('ECMAScript 2022'));     // 2022
+console.log(getAllNumbers('1 кефир, 0.5 батона')); // 105
+console.log(getAllNumbers('агент 007'));           // 7 (почему тут должно быть 7?)
+console.log(getAllNumbers('а я томат'));           // NaN
+console.log('Проверки третьей функции, если передано число:');
+console.log(getAllNumbers(2023)); // 2023
+console.log(getAllNumbers(-1));   // 1
+console.log(getAllNumbers(1.5));  // 15
+console.log('');
