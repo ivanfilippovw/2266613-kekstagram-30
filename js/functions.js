@@ -5,7 +5,7 @@
 
 */
 
-const stringLength = (string, maxLength) => (string.length <= maxLength) ? true : false;
+const stringLength = (string, maxLength) => string.length <= maxLength;
 
 // Cтрока короче 20 символов
 console.log(stringLength('проверяемая строка', 20)); // true
