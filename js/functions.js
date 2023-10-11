@@ -5,19 +5,13 @@
 
 const getStringLength = (string, maxLength) => string.length <= maxLength;
 
-console.log('');
-console.log('Проверки первой функции:');
 // Cтрока короче 20 символов
-console.log(getStringLength('проверяемая строка', 20)); // true
+getStringLength('проверяемая строка', 20); // true
 // Длина строки ровно 18 символов
-console.log(getStringLength('проверяемая строка', 18)); // true
+getStringLength('проверяемая строка', 18); // true
 // Строка длиннее 10 символов
-console.log(getStringLength('проверяемая строка', 10)); // false
-
-console.log(getStringLength('или какая-то другая строка', 30)); // true
-let someString = 'или какая-то другая строка';
-console.log(someString.length);
-console.log('');
+getStringLength('проверяемая строка', 10); // false
+getStringLength('или какая-то другая строка', 30); // true
 
 /*
 2.
@@ -37,7 +31,6 @@ function isPolindrom(string) {
   return string.toLowerCase() === backwardString.toLowerCase();
 }
 
-console.log('Проверки второй функции:');
 // Строка является палиндромом
 isPolindrom('топот'); // true
 // Несмотря на разный регистр, тоже палиндром
@@ -47,12 +40,6 @@ isPolindrom('Кекс'); // false
 
 // Это палиндром
 isPolindrom('Лёша на полке клопа нашёл '); // true
-
-console.log(isPolindrom('топот'));
-console.log(isPolindrom('ДовОд'));
-console.log(isPolindrom('Кекс'));
-console.log(isPolindrom('Лёша на полке клопа нашёл '));
-console.log('');
 
 /*
 3.
@@ -82,14 +69,10 @@ function getAllNumbers(string) {
   return result;
 }
 
-console.log('Проверки третьей функции, если передана строка:');
-console.log(getAllNumbers('2023 год'));            // 2023
-console.log(getAllNumbers('ECMAScript 2022'));     // 2022
-console.log(getAllNumbers('1 кефир, 0.5 батона')); // 105
-console.log(getAllNumbers('агент 007'));           // 7 (почему тут должно быть 7?)
-console.log(getAllNumbers('а я томат'));           // NaN
-console.log('Проверки третьей функции, если передано число:');
-console.log(getAllNumbers(2023)); // 2023
-console.log(getAllNumbers(-1));   // 1
-console.log(getAllNumbers(1.5));  // 15
-console.log('');
+getAllNumbers('2023 год'); // 2023
+getAllNumbers('ECMAScript 2022'); // 2022
+getAllNumbers('1 кефир, 0.5 батона'); // 105
+getAllNumbers('а я томат'); // NaN
+getAllNumbers(2023); // 2023
+getAllNumbers(-1); // 1
+getAllNumbers(1.5); // 15
