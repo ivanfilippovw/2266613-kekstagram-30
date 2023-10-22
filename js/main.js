@@ -55,10 +55,10 @@ function createRandomNumber (min, max) {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-const generateRandomCommentId = createRandomNumber(1, 10000); // как сделать "любое число"?
+const generateRandomCommentId = createRandomNumber(1, Number.MAX_SAFE_INTEGER);
 
 const createRandomComment = () => ({
-  id: generateRandomCommentId(), // как сделать "любое число"?
+  id: generateRandomCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
   message: getRandomArrayElement(RANDOM_MESSAGES),
   name: getRandomArrayElement(NAMES)
