@@ -87,7 +87,7 @@ getPhotosDescription();
 // eslint-disable-next-line no-console
 console.dir(getPhotosDescription, { depth: null });
 
-console.log(getPhotosDescription());
+// console.log(getPhotosDescription());
 
 // если я правильно понял то как делали на лайве 4го раздела, то там создаеются числа по очереди для id, а у меня сделано, что случайные, но не повторяющиеся. не пойму, я вообще задание правильно сделал или неправильно его понял?
 
