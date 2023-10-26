@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-multiple-empty-lines */
 /*
 1.
 Функция для проверки длины строки. Она принимает строку, которую нужно проверить, и максимальную длину и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее. Эта функция нам пригодится для валидации формы. Примеры использования функции:
@@ -76,3 +78,62 @@ getAllNumbers('а я томат'); // NaN
 getAllNumbers(2023); // 2023
 getAllNumbers(-1); // 1
 getAllNumbers(1.5); // 15
+
+// 5.16. Функции возвращаются
+
+const getHoursAndMinutesPerTime = (time) => {
+
+  const hourInMinutes = 60;
+  let timeInHours = 0;
+
+  timeInHours = time / hourInMinutes;
+
+  return timeInHours;
+};
+
+const isMakeAppointment = (startWork, endWork, startAppointment, appointmentTime) => {
+
+  const startHours = startWork.split(':');
+  const endHours = endWork.split(':');
+  const startAppointmentHours = startAppointment.split(':');
+
+  const connectTime = (time) => {
+    let sumOfTime = 0;
+
+    for (let i = 0; i < startHours.length; i++) {
+      if (+time[i] === 30) {
+        sumOfTime += 0.5; continue;
+      }
+      sumOfTime += +time[i];
+    }
+
+    return sumOfTime;
+  };
+
+  const startHoursLikeCount = connectTime(startHours);
+  const endHoursLikeCount = connectTime(endHours);
+  const startAppointmentHoursLikeCount = connectTime(startAppointmentHours);
+  const hoursAndMinutesLikeCount = getHoursAndMinutesPerTime(appointmentTime);
+
+  if (startAppointmentHoursLikeCount < startHoursLikeCount) {
+    return true;
+  }
+
+  if (!((startAppointmentHoursLikeCount + hoursAndMinutesLikeCount) > endHoursLikeCount)) {
+    return true;
+  }
+
+  return false;
+};
+
+isMakeAppointment('08:00', '17:30', '14:00', 90); // true
+isMakeAppointment('08:0', '10:0', '8:0', 120); // true
+isMakeAppointment('08:00', '14:30', '14:00', 90); // false
+isMakeAppointment('14:00', '17:30', '08:0', 90); // false
+isMakeAppointment('8:00', '17:30', '08:00', 900); // false
+
+console.log(isMakeAppointment('08:00', '17:30', '14:00', 90)); // true
+console.log(isMakeAppointment('08:0', '10:0', '8:0', 120)); // true
+console.log(isMakeAppointment('08:00', '14:30', '14:00', 90)); // false
+console.log(isMakeAppointment('14:00', '17:30', '08:0', 90)); // false
+console.log(isMakeAppointment('8:00', '17:30', '08:00', 900)); // false
