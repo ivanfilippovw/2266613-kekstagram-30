@@ -4,7 +4,6 @@
 1.
 Функция для проверки длины строки. Она принимает строку, которую нужно проверить, и максимальную длину и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее. Эта функция нам пригодится для валидации формы. Примеры использования функции:
 */
-
 const isStringLengthValid = (string, maxLength) => maxLength >= string.length;
 
 // Cтрока короче 20 символов
@@ -21,7 +20,6 @@ isStringLengthValid('или какая-то другая строка', 30); // 
 
 Если хотите усложнить задание, предусмотрите случай, когда в строке встречаются пробелы. Они не должны учитываться при проверке!
 */
-
 const isPolindrom = (string) => {
   let backwardString = '';
   string = string.replaceAll(' ', '');
@@ -49,7 +47,6 @@ isPolindrom('Лёша на полке клопа нашёл '); // true
 
 Если хотите усложнить задание, предусмотрите случай, когда вместо строки приходит число. Обратите внимание, что возвращать функция по-прежнему должна только целые положительные числа:
 */
-
 const getAllNumbers = (string) => {
   let result = '';
 
@@ -80,60 +77,59 @@ getAllNumbers(-1); // 1
 getAllNumbers(1.5); // 15
 
 // 5.16. Функции возвращаются
+const HOUR_IN_MINUTES = 60;
 
-const getHoursAndMinutesPerTime = (time) => {
+const getHoursAndMinutesPerTime = (time) => time / HOUR_IN_MINUTES;
 
-  const hourInMinutes = 60;
-  let timeInHours = 0;
+const isMeetPossible = (startWorkDay, endWorkDay, startMeet, meetTime) => {
 
-  timeInHours = time / hourInMinutes;
-
-  return timeInHours;
-};
-
-const isMakeAppointment = (startWork, endWork, startAppointment, appointmentTime) => {
-
-  const startHours = startWork.split(':');
-  const endHours = endWork.split(':');
-  const startAppointmentHours = startAppointment.split(':');
+  const startWorkDayInHours = startWorkDay.split(':');
+  const endWorkDayInHours = endWorkDay.split(':');
+  const startMeetInHours = startMeet.split(':');
 
   const connectTime = (time) => {
     let sumOfTime = 0;
 
-    for (let i = 0; i < startHours.length; i++) {
+    for (let i = 0; i < time.length; i++) {
       if (+time[i] === 30) {
-        sumOfTime += 0.5; continue;
+        sumOfTime += 0.5;
+
+        continue;
       }
+
       sumOfTime += +time[i];
     }
 
     return sumOfTime;
   };
 
-  const startHoursLikeCount = connectTime(startHours);
-  const endHoursLikeCount = connectTime(endHours);
-  const startAppointmentHoursLikeCount = connectTime(startAppointmentHours);
-  const hoursAndMinutesLikeCount = getHoursAndMinutesPerTime(appointmentTime);
+  const startWorkDayInHoursLikeCount = connectTime(startWorkDayInHours);
+  const endWorkDayInHoursLikeCount = connectTime(endWorkDayInHours);
+  const startMeetInHoursLikeCount = connectTime(startMeetInHours);
+  const meetTimeLikeCount = getHoursAndMinutesPerTime(meetTime);
 
-  if (startAppointmentHoursLikeCount < startHoursLikeCount) {
-    return true;
+  if (startMeetInHoursLikeCount < startWorkDayInHoursLikeCount) {
+    return false;
   }
 
-  if (!((startAppointmentHoursLikeCount + hoursAndMinutesLikeCount) > endHoursLikeCount)) {
+  const endMeetHoursLikeCount = startMeetInHoursLikeCount + meetTimeLikeCount;
+  const isEndMeetHoursMoreEndWorkDayHours = endMeetHoursLikeCount > endWorkDayInHoursLikeCount;
+
+  if (!isEndMeetHoursMoreEndWorkDayHours) {
     return true;
   }
 
   return false;
 };
 
-isMakeAppointment('08:00', '17:30', '14:00', 90); // true
-isMakeAppointment('08:0', '10:0', '8:0', 120); // true
-isMakeAppointment('08:00', '14:30', '14:00', 90); // false
-isMakeAppointment('14:00', '17:30', '08:0', 90); // false
-isMakeAppointment('8:00', '17:30', '08:00', 900); // false
+isMeetPossible('08:00', '17:30', '14:00', 90); // true
+isMeetPossible('08:0', '10:0', '8:0', 120); // true
+isMeetPossible('08:00', '14:30', '14:00', 90); // false
+isMeetPossible('14:00', '17:30', '08:0', 90); // false
+isMeetPossible('8:00', '17:30', '08:00', 900); // false
 
-console.log(isMakeAppointment('08:00', '17:30', '14:00', 90)); // true
-console.log(isMakeAppointment('08:0', '10:0', '8:0', 120)); // true
-console.log(isMakeAppointment('08:00', '14:30', '14:00', 90)); // false
-console.log(isMakeAppointment('14:00', '17:30', '08:0', 90)); // false
-console.log(isMakeAppointment('8:00', '17:30', '08:00', 900)); // false
+console.log(isMeetPossible('08:00', '17:30', '14:00', 90)); // true
+console.log(isMeetPossible('08:0', '10:0', '8:0', 120)); // true
+console.log(isMeetPossible('08:00', '14:30', '14:00', 90)); // false
+console.log(isMeetPossible('14:00', '17:30', '08:0', 90)); // false
+console.log(isMeetPossible('8:00', '17:30', '08:00', 900)); // false
