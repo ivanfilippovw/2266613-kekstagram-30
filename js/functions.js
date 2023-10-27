@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
+/* eslint-disable no-multiple-empty-lines */
 /*
 1.
 Функция для проверки длины строки. Она принимает строку, которую нужно проверить, и максимальную длину и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее. Эта функция нам пригодится для валидации формы. Примеры использования функции:
 */
-
 const isStringLengthValid = (string, maxLength) => maxLength >= string.length;
 
 // Cтрока короче 20 символов
@@ -19,7 +20,6 @@ isStringLengthValid('или какая-то другая строка', 30); // 
 
 Если хотите усложнить задание, предусмотрите случай, когда в строке встречаются пробелы. Они не должны учитываться при проверке!
 */
-
 const isPolindrom = (string) => {
   let backwardString = '';
   string = string.replaceAll(' ', '');
@@ -47,7 +47,6 @@ isPolindrom('Лёша на полке клопа нашёл '); // true
 
 Если хотите усложнить задание, предусмотрите случай, когда вместо строки приходит число. Обратите внимание, что возвращать функция по-прежнему должна только целые положительные числа:
 */
-
 const getAllNumbers = (string) => {
   let result = '';
 
@@ -76,3 +75,61 @@ getAllNumbers('а я томат'); // NaN
 getAllNumbers(2023); // 2023
 getAllNumbers(-1); // 1
 getAllNumbers(1.5); // 15
+
+// 5.16. Функции возвращаются
+const HOUR_IN_MINUTES = 60;
+
+const getHoursAndMinutesPerTime = (time) => time / HOUR_IN_MINUTES;
+
+const isMeetPossible = (startWorkDay, endWorkDay, startMeet, meetTime) => {
+
+  const startWorkDayInHours = startWorkDay.split(':');
+  const endWorkDayInHours = endWorkDay.split(':');
+  const startMeetInHours = startMeet.split(':');
+
+  const connectTime = (time) => {
+    let sumOfTime = 0;
+
+    for (let i = 0; i < time.length; i++) {
+      if (+time[i] === 30) {
+        sumOfTime += 0.5;
+
+        continue;
+      }
+
+      sumOfTime += +time[i];
+    }
+
+    return sumOfTime;
+  };
+
+  const startWorkDayInHoursLikeCount = connectTime(startWorkDayInHours);
+  const endWorkDayInHoursLikeCount = connectTime(endWorkDayInHours);
+  const startMeetInHoursLikeCount = connectTime(startMeetInHours);
+  const meetTimeLikeCount = getHoursAndMinutesPerTime(meetTime);
+
+  if (startMeetInHoursLikeCount < startWorkDayInHoursLikeCount) {
+    return false;
+  }
+
+  const endMeetHoursLikeCount = startMeetInHoursLikeCount + meetTimeLikeCount;
+  const isEndMeetHoursMoreEndWorkDayHours = endMeetHoursLikeCount > endWorkDayInHoursLikeCount;
+
+  if (!isEndMeetHoursMoreEndWorkDayHours) {
+    return true;
+  }
+
+  return false;
+};
+
+isMeetPossible('08:00', '17:30', '14:00', 90); // true
+isMeetPossible('08:0', '10:0', '8:0', 120); // true
+isMeetPossible('08:00', '14:30', '14:00', 90); // false
+isMeetPossible('14:00', '17:30', '08:0', 90); // false
+isMeetPossible('8:00', '17:30', '08:00', 900); // false
+
+console.log(isMeetPossible('08:00', '17:30', '14:00', 90)); // true
+console.log(isMeetPossible('08:0', '10:0', '8:0', 120)); // true
+console.log(isMeetPossible('08:00', '14:30', '14:00', 90)); // false
+console.log(isMeetPossible('14:00', '17:30', '08:0', 90)); // false
+console.log(isMeetPossible('8:00', '17:30', '08:00', 900)); // false
