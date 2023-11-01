@@ -1,9 +1,3 @@
-import {getPhotosDescription} from '../js/data';
+import {renderingThumbnails} from '../js/renderingThumbnails';
 
-getPhotosDescription();
-
-// eslint-disable-next-line no-console
-console.dir(getPhotosDescription, { depth: null });
-
-// eslint-disable-next-line no-console
-console.log(getPhotosDescription());
+renderingThumbnails();
