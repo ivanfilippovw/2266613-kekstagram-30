@@ -1,3 +1,1 @@
-import {renderingThumbnails} from '../js/renderingThumbnails';
-
-renderingThumbnails();
+import {} from '../js/pictureModal';

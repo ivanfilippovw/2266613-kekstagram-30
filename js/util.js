@@ -26,6 +26,8 @@ function createRandomNumber (min, max) {
   };
 }
 
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export {getRandomInteger, createRandomNumber, getRandomArrayElement};
+export { getRandomInteger, createRandomNumber, getRandomArrayElement, isEscapeKey };

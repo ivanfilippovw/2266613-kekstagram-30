@@ -1,4 +1,4 @@
-import {getPhotosDescription} from '../js/data';
+import { getPhotosDescription } from '../js/data';
 
 // Находим элемент, куда будем добавлять изображения
 const picturesList = document.querySelector('.pictures');
@@ -24,4 +24,4 @@ const renderingThumbnails = () => {
   picturesList.append(fragment);
 };
 
-export {renderingThumbnails};
+export { renderingThumbnails, fragment };

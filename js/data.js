@@ -1,4 +1,4 @@
-import {getRandomInteger, createRandomNumber, getRandomArrayElement} from '../js/util';
+import { getRandomInteger, createRandomNumber, getRandomArrayElement } from '../js/util';
 
 const PHOTO_DESCRIPTION_COUNT = 25;
 
@@ -56,4 +56,4 @@ const createRandomPhotoDescription = () => ({
 
 const getPhotosDescription = () => Array.from({length: PHOTO_DESCRIPTION_COUNT}, createRandomPhotoDescription);
 
-export {getPhotosDescription};
+export { getPhotosDescription };
