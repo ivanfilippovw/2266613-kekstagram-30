@@ -1,6 +1,6 @@
-import { getRandomInteger, createRandomNumber, getRandomArrayElement } from '../js/util';
+import { getRandomInteger, createRandomNumber, getRandomArrayElement } from '../js/util.js';
 
-const PHOTO_DATA_COUNT = 25;
+const PICTURE_DATA_COUNT = 25;
 
 const AVATAR_COUNT = 6;
 const LIKE_MIN_COUNT = 15;
@@ -42,18 +42,18 @@ const createRandomComment = () => ({
   name: getRandomArrayElement(NAMES)
 });
 
-const generateRandomPhotoDescriptionId = createRandomNumber(1, 25);
-const generateRandomPhotoDescriptionUrl = createRandomNumber(1, 25);
+const generateRandomPictureDescriptionId = createRandomNumber(1, 25);
+const generateRandomPictureDescriptionUrl = createRandomNumber(1, 25);
 const generateRandomCommentsCount = createRandomNumber(0, COMMENTS_COUNT);
 
-const createRandomPhotoDescription = () => ({
-  id: generateRandomPhotoDescriptionId(),
-  url: `photos/${generateRandomPhotoDescriptionUrl()}.jpg`,
+const createRandomPictureDescription = () => ({
+  id: generateRandomPictureDescriptionId(),
+  url: `photos/${generateRandomPictureDescriptionUrl()}.jpg`,
   description: getRandomArrayElement(RANDOM_DESCRIPTIONS),
   likes: getRandomInteger(LIKE_MIN_COUNT, LIKE_MAX_COUNT),
   comments: Array.from({length: generateRandomCommentsCount()}, createRandomComment)
 });
 
-const getPhotosData = () => Array.from({length: PHOTO_DATA_COUNT}, createRandomPhotoDescription);
+const getPicturesData = () => Array.from({length: PICTURE_DATA_COUNT}, createRandomPictureDescription);
 
-export { getPhotosData };
+export { getPicturesData };
