@@ -1,3 +1,6 @@
-import {renderingThumbnails} from '../js/renderingThumbnails';
+import { getPicturesData } from '../js/data.js'; // Функция для получения случайных данных
+import { renderGallery } from './renderGallery.js'; // Функция для создания галереи
 
-renderingThumbnails();
+const arrayDataPictures = getPicturesData();
+
+renderGallery(arrayDataPictures);
