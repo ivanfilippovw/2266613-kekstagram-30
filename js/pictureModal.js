@@ -1,8 +1,5 @@
 import { isEscapeKey } from './util';
-import { renderingThumbnails } from '../js/renderingThumbnails';
 
-// создаем массив данных и записываем его контейнер
-const picturesData = renderingThumbnails();
 // находим контейнер
 const thumbnailsContainer = document.querySelector('.pictures'); // то где у нас уже лежат миниатюры с нужными данными
 // находим модальное окно
@@ -22,7 +19,7 @@ const commentsCountPicture = bigPictureModal.querySelector('.social__comment-sho
 // находим общее количетсво комментариев модального окна
 const maxCommentsCountPicture = bigPictureModal.querySelector('.social__comment-total-count');
 // находим блок комментариев модального окна
-const commentsPicture = bigPictureModal.querySelector('.social__comments');
+// const commentsPicture = bigPictureModal.querySelector('.social__comments');
 // находим описание фотографии модального окна
 const descriptionPicture = bigPictureModal.querySelector('.social__caption');
 
@@ -34,6 +31,9 @@ const likesThumbnail = thumbnailsContainer.querySelector('.picture__likes');
 const commentsCountThumbnail = thumbnailsContainer.querySelector('.picture__comments');
 // находим описание фотографии миниатюры
 const descriptionThumbnail = thumbnailsContainer.querySelector('.picture__img').alt;
+
+// находим список комментариев переданный ранее в миниатюры
+// const comments = thumbnailsContainer.
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -47,6 +47,8 @@ function getDataForPicture () {
   likesPicture.textContent = likesThumbnail.textContent;
   commentsCountPicture.textContent = commentsCountThumbnail.textContent;
   maxCommentsCountPicture.textContent = commentsCountThumbnail.textContent;
+
+  // commentsCountThumbnail.textContent =
 
   descriptionPicture.textContent = descriptionThumbnail;
   imgPicture.alt = descriptionThumbnail;

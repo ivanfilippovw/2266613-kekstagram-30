@@ -1,6 +1,6 @@
 import { getRandomInteger, createRandomNumber, getRandomArrayElement } from '../js/util';
 
-const PHOTO_DESCRIPTION_COUNT = 25;
+const PHOTO_DATA_COUNT = 25;
 
 const AVATAR_COUNT = 6;
 const LIKE_MIN_COUNT = 15;
@@ -54,6 +54,6 @@ const createRandomPhotoDescription = () => ({
   comments: Array.from({length: generateRandomCommentsCount()}, createRandomComment)
 });
 
-const getPhotosDescription = () => Array.from({length: PHOTO_DESCRIPTION_COUNT}, createRandomPhotoDescription);
+const getPhotosData = () => Array.from({length: PHOTO_DATA_COUNT}, createRandomPhotoDescription);
 
-export { getPhotosDescription };
+export { getPhotosData };
