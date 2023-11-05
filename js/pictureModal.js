@@ -1,5 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { renderComments } from './renderComments.js';
+import { sortComments } from './sortComments.js';
 
 // Находим тег body
 const bodyElement = document.querySelector('body');
@@ -9,21 +10,10 @@ const bigPictureModal = document.querySelector('.big-picture');
 // Находим кнопку закрытия модального окна
 const closeBigPictureModalElement = bigPictureModal.querySelector('.big-picture__cancel');
 
-// Находим элемент содержащий количество отображаемых и общее количетсво комментариев модального окна
-const commentCountWrapper = bigPictureModal.querySelector('.social__comment-count');
-// Находим количество отображаемых комментариев модального окна
-const commentCountElement = bigPictureModal.querySelector('.social__comment-shown-count');
-// Находим общее количество комментариев модального окна
-const totalCommentCountElement = bigPictureModal.querySelector('.social__comment-total-count');
-// Находим элемент для загрузки дополнительных комментариев модального окна
-const loaderCommentElement = bigPictureModal.querySelector('.comments-loader');
-
-const initCommentList = (comments) => {
-  commentCountElement.textContent = comments.length; // TODO исправить на то, сколько отображено комментариев
-  totalCommentCountElement.textContent = comments.length; // показывает, сколько всего комментариев
-  commentCountWrapper.classList.add('hidden'); // добавялем класс и прячем счетчик комментариев - временно
-  loaderCommentElement.classList.add('hidden'); // добавляем класс и прячем загрузку доп комментариев - временно
-};
+// Находим элемент-контейнер, где будут находиться сгенерированные по шаблону комментарии
+const commentsList = document.querySelector('.social__comments');
+// Находим все элементы, содержащие комментарии
+const commentsElements = commentsList.children;
 
 const renderPicture = ({ url, description, likes }) => {
   bigPictureModal.querySelector('.big-picture__img img').src = url;
@@ -38,7 +28,7 @@ const showPicture = (pictureData) => {
   document.addEventListener('keydown', onDocumentKeydown);
 
   renderComments(pictureData.comments);
-  initCommentList(pictureData);
+  sortComments(commentsElements);
   renderPicture(pictureData);
 };
 
