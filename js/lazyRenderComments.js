@@ -7,39 +7,10 @@ const totalCommentCountElement = bigPictureModal.querySelector('.social__comment
 // Находим элемент для загрузки дополнительных комментариев модального окна
 const loaderCommentElement = bigPictureModal.querySelector('.comments-loader');
 
-/*
-const addCommentsElements = (startIndex, currentIndex, comments) => {
-  for (let i = currentIndex; i < currentIndex + startIndex && i < comments.length; i++) {
-    comments[i].style.display = 'flex';
-  }
-  currentIndex += startIndex;
-  commentCountElement.textContent = currentIndex > comments.length ? comments.length : currentIndex;
-
-  if (currentIndex >= comments.length) {
-    loaderCommentElement.classList.add('hidden');
-  }
-};
-*/
-
 const startCommentIndex = 5;
-const currentCommentIndex = 0;
+let currentCommentIndex = 0;
 
-const onLoaderElementClick = (startIndex, currentIndex, comments) => {
-  // addCommentsElements(startIndex, currentIndex, comments);
-  for (let i = currentIndex; i < currentIndex + startIndex && i < comments.length; i++) {
-    comments[i].style.display = 'flex';
-  }
-  currentIndex += startIndex;
-  commentCountElement.textContent = currentIndex > comments.length ? comments.length : currentIndex;
-
-  if (currentIndex >= comments.length) {
-    loaderCommentElement.classList.add('hidden');
-  }
-  // console.log('click!');
-};
-
-
-const sortComments = (comments) => {
+const lazyRenderComments = (comments) => {
   commentCountElement.textContent = comments.length > startCommentIndex ? startCommentIndex : comments.length; // показывает, сколько отображено комментариев
   totalCommentCountElement.textContent = comments.length; // показывает, сколько всего комментариев
 
@@ -47,12 +18,9 @@ const sortComments = (comments) => {
     comments[i].style.display = 'none';
   }
 
-  loaderCommentElement.addEventListener('click', () => {
-    onLoaderElementClick(startCommentIndex, currentCommentIndex, comments);
-  });
+  const onLoaderElementClick = () => {
+    currentCommentIndex += startCommentIndex;
 
-  /*
-  loaderCommentElement.addEventListener('click', () => {
     for (let i = currentCommentIndex; i < currentCommentIndex + startCommentIndex && i < comments.length; i++) {
       comments[i].style.display = 'flex';
     }
@@ -62,8 +30,12 @@ const sortComments = (comments) => {
     if (currentCommentIndex >= comments.length) {
       loaderCommentElement.classList.add('hidden');
     }
+  };
+
+  loaderCommentElement.addEventListener('click', onLoaderElementClick);
+  document.addEventListener('modal-close', () => {
+    loaderCommentElement.removeEventListener('click', onLoaderElementClick);
   });
-  */
 };
 
-export { sortComments };
+export { loaderCommentElement, startCommentIndex, lazyRenderComments };
