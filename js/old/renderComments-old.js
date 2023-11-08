@@ -1,4 +1,4 @@
-import { loaderCommentElement, startCommentIndex } from './lazyRenderComments.js';
+// рабочий, не используется, перемещен в pictureModal
 
 // Находим шаблон комментария и в шаблоне находим нужный элемент
 const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
@@ -18,12 +18,6 @@ const createComment = ({ avatar, message, name }) => {
 
 // Функция содания фрагмента, наполнения фрагмента комментариями и добавления наполненного фрагмента в элемент-контейнер
 const renderComments = (comments) => {
-  if (comments.length <= startCommentIndex) {
-    loaderCommentElement.classList.add('hidden');
-  } else {
-    loaderCommentElement.classList.remove('hidden');
-  }
-
   commentsList.innerHTML = '';
 
   const fragment = document.createDocumentFragment();
