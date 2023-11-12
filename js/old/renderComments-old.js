@@ -1,3 +1,5 @@
+// рабочий, не используется, перемещен в pictureModal
+
 // Находим шаблон комментария и в шаблоне находим нужный элемент
 const commentTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
 // Находим элемент-контейнер, куда будем добавлять сгенерированные по шаблону комментарии
