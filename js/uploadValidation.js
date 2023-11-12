@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 import { isEscapeKey } from './util.js';
 
 // Находим элемент-контейнер, где находится форма редактирования изображения
