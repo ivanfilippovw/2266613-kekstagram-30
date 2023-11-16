@@ -6,6 +6,7 @@ const ErrorText = {
   INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хэштегов`,
   NOT_UNIQUE: 'Хэштеги должны быть уникальными, они не могут повторяться',
   INVALID_PATTERN: 'Неправильный хэштег, максимальная длина одного хэштега 20 символов, включая решётку, а так же хештег не может состоять только из одной решётки',
+  EMPTY_FIELD: 'Введена пустая строка',
 };
 
 // Находим форму редактирования изображения
@@ -32,7 +33,12 @@ const normalizeTags = (tagsString) => tagsString
   .replace(/\s+/g, ' ')
   .split(' ');
 
+
 const hasValidTags = (value) => {
+  if (value.trim() === '') {
+    return true;
+  }
+
   const array = normalizeTags(value);
 
   for (let i = 0; i < array.length; i++) {
@@ -65,7 +71,7 @@ pristine.addValidator(
   uploadHashtagsField,
   hasValidTags,
   ErrorText.INVALID_PATTERN,
-  1,
+  3,
   true
 );
 pristine.addValidator(
@@ -79,7 +85,7 @@ pristine.addValidator(
   uploadHashtagsField,
   hasValidCount,
   ErrorText.INVALID_COUNT,
-  3,
+  1,
   true
 );
 
