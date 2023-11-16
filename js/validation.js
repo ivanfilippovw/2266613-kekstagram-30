@@ -2,18 +2,14 @@ import { isEscapeKey } from './util.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-const ErrorText = {
+const errorText = {
   INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хэштегов`,
   NOT_UNIQUE: 'Хэштеги должны быть уникальными, они не могут повторяться',
   INVALID_PATTERN: 'Неправильный хэштег, максимальная длина одного хэштега 20 символов, включая решётку, а так же хештег не может состоять только из одной решётки',
-  EMPTY_FIELD: 'Введена пустая строка',
 };
 
-// Находим форму редактирования изображения
 const uploadFormElement = document.querySelector('.img-upload__form');
-// Находим поле для ввода хештегов формы редактирования изображения
 const uploadHashtagsField = uploadFormElement.querySelector('.text__hashtags');
-// Находим поле для ввода комментария формы редактирования изображения
 const uploadCommentField = uploadFormElement.querySelector('.text__description');
 
 const pristine = new Pristine(
@@ -28,11 +24,7 @@ const pristine = new Pristine(
 
 const isFormValid = (evt) => pristine.validate() ? pristine.reset() : evt.preventDefault();
 
-const normalizeTags = (tagsString) => tagsString
-  .trim()
-  .replace(/\s+/g, ' ')
-  .split(' ');
-
+const normalizeTags = (tagsString) => tagsString.trim().replace(/\s+/g, ' ').split(' ');
 
 const hasValidTags = (value) => {
   if (value.trim() === '') {
@@ -56,7 +48,7 @@ const hasUniqueTags = (value) => {
 
   for (let i = 0; i < array.length; i++) {
     const arrayValue = array[i].toLowerCase();
-    if (arrayClone.includes(arrayValue.toLowerCase())) {
+    if (arrayClone.includes(arrayValue)) {
       return false;
     }
     arrayClone.push(arrayValue);
@@ -70,21 +62,21 @@ const hasValidCount = (value) => normalizeTags(value).length <= MAX_HASHTAG_COUN
 pristine.addValidator(
   uploadHashtagsField,
   hasValidTags,
-  ErrorText.INVALID_PATTERN,
+  errorText.INVALID_PATTERN,
   3,
   true
 );
 pristine.addValidator(
   uploadHashtagsField,
   hasUniqueTags,
-  ErrorText.NOT_UNIQUE,
+  errorText.NOT_UNIQUE,
   2,
   true
 );
 pristine.addValidator(
   uploadHashtagsField,
   hasValidCount,
-  ErrorText.INVALID_COUNT,
+  errorText.INVALID_COUNT,
   1,
   true
 );
@@ -99,7 +91,7 @@ pristine.addValidator(
 
 const isTextFieldFocused = (evt) => {
   if (isEscapeKey) {
-    evt.stopPropagation(); // Предотвращаем всплытие события
+    evt.stopPropagation();
   }
 };
 
