@@ -45,7 +45,11 @@ const onUploadFormSubmit = (evt) => {
   isFormValid(evt);
 };
 
-uploadInputElement.addEventListener('change', onUploadInputChange);
-closeUploadFormElement.addEventListener('click', onCloseUploadFormClick);
-uploadFormElement.addEventListener('submit', onUploadFormSubmit);
-initEffect();
+const initUploadForm = () => {
+  uploadInputElement.addEventListener('change', onUploadInputChange);
+  closeUploadFormElement.addEventListener('click', onCloseUploadFormClick);
+  uploadFormElement.addEventListener('submit', onUploadFormSubmit);
+  initEffect();
+};
+
+export { initUploadForm };

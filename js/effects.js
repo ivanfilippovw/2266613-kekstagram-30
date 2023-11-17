@@ -1,4 +1,4 @@
-const effects = {
+const Effects = {
   DEFAULT: 'none',
   CHROME: 'chrome',
   SEPIA: 'sepia',
@@ -8,55 +8,55 @@ const effects = {
 };
 
 const effectToFilter = {
-  [effects.CHROME]: {
+  [Effects.CHROME]: {
     style: 'grayscale',
     unit: '',
   },
-  [effects.SEPIA]: {
+  [Effects.SEPIA]: {
     style: 'sepia',
     unit: '',
   },
-  [effects.MARVIN]: {
+  [Effects.MARVIN]: {
     style: 'invert',
     unit: '%',
   },
-  [effects.PHOBOS]: {
+  [Effects.PHOBOS]: {
     style: 'blur',
     unit: 'px',
   },
-  [effects.HEAT]: {
+  [Effects.HEAT]: {
     style: 'brightness',
     unit: '',
   },
 };
 
 const effectToSliderOptions = {
-  [effects.DEFAULT]: {
+  [Effects.DEFAULT]: {
     min: 0,
     max: 100,
     step: 1,
   },
-  [effects.CHROME]: {
+  [Effects.CHROME]: {
     min: 0,
     max: 1,
     step: 0.1,
   },
-  [effects.SEPIA]: {
+  [Effects.SEPIA]: {
     min: 0,
     max: 1,
     step: 0.1,
   },
-  [effects.MARVIN]: {
+  [Effects.MARVIN]: {
     min: 0,
     max: 100,
     step: 1,
   },
-  [effects.PHOBOS]: {
+  [Effects.PHOBOS]: {
     min: 0,
     max: 3,
     step: 0.1,
   },
-  [effects.HEAT]: {
+  [Effects.HEAT]: {
     min: 0,
     max: 3,
     step: 0.1,
@@ -70,9 +70,9 @@ const uploadSliderInput = uploadContainer.querySelector('.effect-level__value');
 const uploadSlider = uploadContainer.querySelector('.effect-level__slider');
 const effectsElement = uploadContainer.querySelector('.effects');
 
-let chosenEffect = effects.DEFAULT;
+let chosenEffect = Effects.DEFAULT;
 
-const isDefault = () => chosenEffect === effects.DEFAULT;
+const isDefault = () => chosenEffect === Effects.DEFAULT;
 
 const setPreviewStyle = () => {
   if (isDefault()) {
@@ -145,7 +145,7 @@ const setEffect = (effect) => {
 };
 
 const reset = () => {
-  setEffect(effects.DEFAULT);
+  setEffect(Effects.DEFAULT);
 };
 
 const onEffectsChange = (evt) => {
