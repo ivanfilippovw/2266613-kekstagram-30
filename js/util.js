@@ -4,13 +4,13 @@ const REMOVE_MESSAGE_TIMEOUT = 5000;
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const hideMessage = (message) => {
-  message.remove();
+  bodyElement.querySelector(`.${message}`).remove();
   document.body.removeEventListener('click', onBodyClick);
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
 function onBodyClick(evt, typeResultMessage) {
-  if (!evt.target.closest(`.${typeResultMessage}__inner`)) {
+  if (evt.target.closest(`.${typeResultMessage}__inner`)) {
     return;
   }
 
@@ -41,14 +41,14 @@ const showMessage = (typeResultMessage) => {
   }
 
   const onCloseMessageElementClick = () => {
-    hideMessage();
+    hideMessage(typeResultMessage);
   };
 
-  document.body.addEventListener('click', () => (onBodyClick(typeResultMessage)));
-  document.addEventListener('keydown', () => (onDocumentKeydown(typeResultMessage)));
+  document.body.addEventListener('click', (evt) => onBodyClick(evt, typeResultMessage));
+  document.addEventListener('keydown', (evt) => onDocumentKeydown(evt, typeResultMessage));
 
   const closeMessageElement = message.querySelector(`.${typeResultMessage}__button`);
-  closeMessageElement.addEventListener('click', () => (onCloseMessageElementClick(typeResultMessage)));
+  closeMessageElement.addEventListener('click', onCloseMessageElementClick);
 };
 
 export { isEscapeKey, showMessage };
