@@ -22,8 +22,6 @@ const pristine = new Pristine(
   true
 );
 
-const isFormValid = (evt) => pristine.validate() ? pristine.reset() : evt.preventDefault();
-
 const normalizeTags = (tagsString) => tagsString.trim().replace(/\s+/g, ' ').split(' ');
 
 const hasValidTags = (value) => {
@@ -98,4 +96,4 @@ const isTextFieldFocused = (evt) => {
 uploadHashtagsField.addEventListener('keydown', isTextFieldFocused);
 uploadCommentField.addEventListener('keydown', isTextFieldFocused);
 
-export { pristine, isFormValid };
+export { pristine };
