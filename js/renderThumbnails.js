@@ -1,5 +1,6 @@
 // Находим шаблон миниатюры и в шаблоне находим нужный элемент
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const filters = document.querySelector('.img-filters');
 
 // Функция создания (клонирования) одной миниатюры по шаблону
 const createThumbnail = ({id, url, description, comments, likes}) => {
@@ -24,6 +25,7 @@ const renderThumbnails = (pictures, container) => {
   });
 
   container.append(fragment);
+  filters.classList.remove('img-filters--inactive');
 };
 
-export { renderThumbnails };
+export { renderThumbnails, createThumbnail };
