@@ -62,10 +62,11 @@ const validUploadForm = (evt, onSuccess) => {
     .then(() => {
       onSuccess();
       showMessage(Message.success);
-      unblockUploadSubmitElement();
     })
     .catch(() => {
       showMessage(Message.error);
+    })
+    .finally(() => {
       unblockUploadSubmitElement();
     });
 };
