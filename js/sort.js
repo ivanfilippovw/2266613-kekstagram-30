@@ -25,7 +25,7 @@ const getUniqueRandomArray = (pictures, count) => {
   return uniqueArray;
 };
 
-const sortThumbnails = (pictures) => {
+const sortThumbnails = (evt, pictures) => {
   const thumbnailsToRemove = thumbnailsContainer.querySelectorAll('.picture');
   thumbnailsToRemove.forEach((thumbnail) => {
     thumbnail.remove();
@@ -41,6 +41,8 @@ const sortThumbnails = (pictures) => {
         const thumbnail = createThumbnail(picture);
         fragment.append(thumbnail);
       });
+    thumbnailsContainer.append(fragment);
+    return;
   }
 
   if (currentFilterElement === discussedFilterElement) {
@@ -51,6 +53,8 @@ const sortThumbnails = (pictures) => {
         const thumbnail = createThumbnail(picture);
         fragment.append(thumbnail);
       });
+    thumbnailsContainer.append(fragment);
+    return;
   }
 
   if (currentFilterElement === defaultFilterElement) {
@@ -67,8 +71,9 @@ const onFilterElementClick = (evt, pictures) => {
   currentFilterElement.classList.remove('img-filters__button--active');
   currentFilterElement = evt.target;
   currentFilterElement.classList.add('img-filters__button--active');
-  const debouncedSortThumbnails = debounce(() => sortThumbnails(pictures), RERENDER_DELAY);
-  debouncedSortThumbnails(); // Вызов отложенной функции после создания
+
+  const debouncedSortThumbnails = debounce(() => sortThumbnails(evt, pictures), RERENDER_DELAY);
+  debouncedSortThumbnails(evt, pictures); // Вызов отложенной функции после создания
 };
 
 const filterButtons = (pictures) => {
