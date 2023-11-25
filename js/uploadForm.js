@@ -3,6 +3,7 @@ import { pristine } from './validation.js';
 import { resetScale } from './scale.js';
 import { init as initEffect, reset as resetEffect } from './effects.js';
 import { sendData } from './api.js';
+import { initFileChooser } from './avatar.js';
 
 const bodyElement = document.querySelector('body');
 const uploadFormElement = document.querySelector('.img-upload__form');
@@ -96,6 +97,7 @@ function onDocumentKeydown(evt) {
 const initUploadForm = () => {
   uploadInputElement.addEventListener('change', onUploadInputChange);
   closeUploadFormElement.addEventListener('click', onCloseUploadFormClick);
+  initFileChooser();
   initEffect();
   setUploadFormSubmit(hideModal);
 };
