@@ -12,8 +12,6 @@ const randomFilterElement = filtersContainer.querySelector('#filter-random');
 const discussedFilterElement = filtersContainer.querySelector('#filter-discussed');
 
 let currentFilterElement = defaultFilterElement;
-let lastSelectedDefaultFilter = null;
-let lastSelectedDiscussedFilter = null;
 
 const getUniqueRandomArray = (pictures, count) => {
   const uniqueArray = [];
@@ -69,27 +67,10 @@ const sortThumbnails = (evt, pictures) => {
   thumbnailsContainer.append(fragment);
 };
 
-const compareFilters = () =>
-  currentFilterElement === defaultFilterElement && currentFilterElement === lastSelectedDefaultFilter ||
-  currentFilterElement === discussedFilterElement && currentFilterElement === lastSelectedDiscussedFilter;
-
 const onFilterElementClick = (evt, pictures) => {
   currentFilterElement.classList.remove('img-filters__button--active');
   currentFilterElement = evt.target;
   currentFilterElement.classList.add('img-filters__button--active');
-
-  // Если текущий фильтр - randomFilterElement, нет необходимости в проверке
-  if (currentFilterElement !== randomFilterElement) {
-    if (compareFilters()) {
-      return;
-    }
-  }
-
-  if (currentFilterElement === defaultFilterElement) {
-    lastSelectedDefaultFilter = currentFilterElement;
-  } else if (currentFilterElement === discussedFilterElement) {
-    lastSelectedDiscussedFilter = currentFilterElement;
-  }
 
   const debouncedSortThumbnails = debounce(() => sortThumbnails(evt, pictures), RERENDER_DELAY);
   debouncedSortThumbnails(evt, pictures); // Вызов отложенной функции после создания
