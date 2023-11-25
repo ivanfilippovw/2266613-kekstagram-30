@@ -1,5 +1,7 @@
 const bodyElement = document.querySelector('body');
+
 const REMOVE_MESSAGE_TIMEOUT = 5000;
+
 let currentTypeMessage = null;
 
 // Функция возврата случайного числа в заданном диапазоне (min и max)
@@ -87,4 +89,12 @@ const showMessage = (typeResultMessage) => {
   closeMessageElement.addEventListener('click', onCloseMessageElementClick);
 };
 
-export { createRandomNumber, getRandomArrayElement, isEscapeKey, showMessage };
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { createRandomNumber, getRandomArrayElement, isEscapeKey, showMessage, debounce };

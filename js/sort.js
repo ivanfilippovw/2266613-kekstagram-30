@@ -1,6 +1,7 @@
-import { getRandomArrayElement } from './util.js';
+import { getRandomArrayElement, debounce } from './util.js';
 import { createThumbnail } from './renderThumbnails.js';
 
+const RERENDER_DELAY = 500;
 const RANDOM_FILTER_COUNT = 10;
 
 // Находим элемент-контейнер, куда будем добавлять сгенерированные по шаблону миниатюры
@@ -66,7 +67,8 @@ const onFilterElementClick = (evt, pictures) => {
   currentFilterElement.classList.remove('img-filters__button--active');
   currentFilterElement = evt.target;
   currentFilterElement.classList.add('img-filters__button--active');
-  sortThumbnails(pictures);
+  const debouncedSortThumbnails = debounce(() => sortThumbnails(pictures), RERENDER_DELAY);
+  debouncedSortThumbnails(); // Вызов отложенной функции после создания
 };
 
 const filterButtons = (pictures) => {
