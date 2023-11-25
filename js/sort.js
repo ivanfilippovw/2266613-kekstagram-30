@@ -43,6 +43,8 @@ const sortThumbnails = (evt, pictures) => {
         const thumbnail = createThumbnail(picture);
         fragment.append(thumbnail);
       });
+    thumbnailsContainer.append(fragment);
+    return;
   }
 
   if (currentFilterElement === discussedFilterElement) {
@@ -53,6 +55,8 @@ const sortThumbnails = (evt, pictures) => {
         const thumbnail = createThumbnail(picture);
         fragment.append(thumbnail);
       });
+    thumbnailsContainer.append(fragment);
+    return;
   }
 
   if (currentFilterElement === defaultFilterElement) {
@@ -76,7 +80,7 @@ const onFilterElementClick = (evt, pictures) => {
 
   // Если текущий фильтр - randomFilterElement, нет необходимости в проверке
   if (currentFilterElement !== randomFilterElement) {
-    if (compareFilters) {
+    if (compareFilters()) {
       return;
     }
   }
