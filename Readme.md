@@ -1,4 +1,4 @@
-# Проект сайта [Kekstagram](https://ivanfilippovw.github.io/kekstagram/) - сервис просмотра изображений
+# Проект сайта [Kekstagram](https://github.com/ivanfilippovw/kekstagram/blob/master/technical-assignment.md) - сервис просмотра изображений
 #### Пользователям предоставлена возможность загружать свои фотографии или просматривать фотографии, загруженные ранее другими пользователями.
 * Ветка-деплой _**main**_.
 * В прочих ветках пошагово реализованы задачи технического задания (подробно https://ivanfilippovw.github.io/technical-assignment.md):
